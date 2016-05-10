@@ -31,6 +31,25 @@ gulp.task('watch', function() {
     gulp.watch('public/scss/*.scss', ['sass']);
 });
 
+// Minify js files
+gulp.task('srccompress', function() {
+  return gulp.src('public/js/src/*.js')
+    .pipe(concat('concat.js'))
+    .pipe(gulp.dest('dist'))
+    .pipe(rename('all.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('public/dist'));
+});
+
+gulp.task('depcompress', function() {
+  return gulp.src('public/js/dependencies/*.js')
+    .pipe(concat('concat.js'))
+    .pipe(gulp.dest('dist'))
+    .pipe(rename('jsd.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('public/dist'));
+});
+
 //Nodemon - start node server and watch for changes
 gulp.task('start', function () {
   nodemon({
@@ -41,4 +60,4 @@ gulp.task('start', function () {
 })
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'watch', 'start']);
+gulp.task('default', ['lint', 'sass', 'watch', 'srccompress', 'depcompress', 'start']);
