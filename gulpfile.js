@@ -32,7 +32,7 @@ gulp.task('watch', function() {
 });
 
 // Minify js files
-gulp.task('srccompress', function() {
+gulp.task('js_srccompress', function() {
   return gulp.src('public/js/src/*.js')
     .pipe(concat('concat.js'))
     .pipe(gulp.dest('dist'))
@@ -41,7 +41,7 @@ gulp.task('srccompress', function() {
     .pipe(gulp.dest('public/dist'));
 });
 
-gulp.task('depcompress', function() {
+gulp.task('js_depcompress', function() {
   return gulp.src('public/js/dependencies/*.js')
     .pipe(concat('concat.js'))
     .pipe(gulp.dest('dist'))
@@ -49,6 +49,16 @@ gulp.task('depcompress', function() {
     .pipe(uglify())
     .pipe(gulp.dest('public/dist'));
 });
+
+// Css Dependency Compress 
+gulp.task('css_depcompress', function() {
+  return gulp.src('public/css/dependencies/*.css')
+    .pipe(concat('concat.css'))
+    .pipe(gulp.dest('dist'))
+    .pipe(rename('cssd.css'))
+    .pipe(gulp.dest('public/dist'));
+});
+
 
 //Nodemon - start node server and watch for changes
 gulp.task('start', function () {
@@ -60,4 +70,4 @@ gulp.task('start', function () {
 })
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'watch', 'srccompress', 'depcompress', 'start']);
+gulp.task('default', ['lint', 'sass', 'watch', 'js_srccompress', 'js_depcompress', 'css_depcompress', 'start']);
