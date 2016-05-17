@@ -1,0 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
+@import url(https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,300);
+h1, h2, h3, h4, h6 {
+  margin: 0; }
+
+ul, ol {
+  padding: 0; }
+
+.clearfix:after {
+  display: table;
+  content: "";
+  clear: both; }
